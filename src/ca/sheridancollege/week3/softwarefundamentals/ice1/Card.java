@@ -13,40 +13,71 @@ package ca.sheridancollege.week3.softwarefundamentals.ice1;
  * The goal:
  * 
  * add your name as a modifier.
- * @author Mayamba
+ * @modifier Mayamba Boka-Mbambu
  */
 public class Card {
 
-   private String suit; //clubs, spades, diamonds, hearts
-   private int value;//1-13
+   private Suit suit; //clubs, spades, diamonds, hearts
+   private CardName cardName; //2,3,4,5,6,7,8,9,10,Jack,Queen,King,Ace
+   // private int value; //1-13
 
-   public static final String [] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
-    /**
-     * @return the suit
-     */
-    public String getSuit() {
+
+   // public static final String [] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
+   
+   enum Suit {
+       Hearts,
+       Diamonds,
+       Spades,
+       Clubs;
+       
+        private static final Suit[] type = Suit.values();
+        public static Suit getSuit (int s){
+            return Suit.type[s];
+        }
+            
+   }
+   
+   enum CardName {
+       One, Two, Three, Four, Five, Six, Seven,Eight, Nine,
+       Jack, Queen, King, Ace;
+       
+       private static final CardName[] name = CardName.values();
+       public static CardName getCardname (int a){
+           return CardName.name[a];
+       }
+   }
+   
+   public Card (Suit suit,CardName cardName) {
+       this.suit = suit;
+       
+       this.cardName = cardName;
+   }
+
+    Card() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Suit getSuit() {
         return suit;
     }
 
-    /**
-     * @param suit the suit to set
-     */
-    public void setSuit(String suit) {
+    public void setSuit(Suit suit) {
         this.suit = suit;
     }
 
-    /**
-     * @return the value
-     */
-    public int getValue() {
-        return value;
+    public CardName getCardName() {
+        return cardName;
     }
 
-    /**
-     * @param value the value to set
-     */
-    public void setValue(int value) {
-        this.value = value;
+    public void setCardName(CardName cardName) {
+        this.cardName = cardName;
+    }
+
+    
+    @Override
+    public String toString() {
+        
+        return cardName + " of " + suit;
     }
    
    
